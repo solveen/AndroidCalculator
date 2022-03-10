@@ -10,10 +10,10 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button one, two, three, four, five, six, seven, eight, nine, zero, add, sub, divide, modulus, equals, multiply, clear, dot;
+    Button one, two, three, four, five, six, seven, eight, nine, zero, add, sub, divide, modulus, equals, multiply, clear, dot, delete;
     EditText display;
 
-    double valueOne = 0, valueTwo = 0;
+    double valueOne = 0.0, valueTwo = 0.0;
 
     boolean addition, subtraction, division, multiplication, mod, equation;
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         clear = (Button) findViewById(R.id.clear);
         equals = (Button) findViewById(R.id.buttoneql);
         dot = (Button) findViewById(R.id.bDot);
+        delete = (Button) findViewById(R.id.buttonDel);
         display = (EditText) findViewById(R.id.display);
 
 
@@ -107,6 +108,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 display.setText(display.getText() + ".");
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = display.getText().toString();
+                if(value.length() > 0){
+                    value = value.substring(0,value.length()-1);
+                    display.setText(value);
+                }
             }
         });
 
@@ -188,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 display.setText(null);
             }
         });
+
         equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
